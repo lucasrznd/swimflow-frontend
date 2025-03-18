@@ -1,34 +1,43 @@
-<div class="flex align-items-center justify-content-center">
-  <div class="flex flex-col gap-6 w-full">
-    <form [formGroup]="userForm" (ngSubmit)="handleSubmitAddUser()">
-      <div>
-        <label for="fullName" class="block font-bold mb-3">Nome Completo</label>
-        <input type="text" pInputText id="fullName" formControlName="fullName" required autofocus fluid />
-        <small class="text-red-500" *ngIf="!this.userForm.value.fullName">Nome é obrigatório.</small>
-      </div>
+<div class="flex flex-column w-full p-3">
+  <form [formGroup]="userForm" (ngSubmit)="handleSubmitUserAction()" class="w-full">
+    <div class="field mb-3">
+      <label for="fullName" class="block font-bold mb-2">Nome Completo</label>
+      <input type="text" class="w-full p-inputtext" pInputText id="fullName" formControlName="fullName" required
+        autofocus />
+      <small class="text-red-500 block" *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched">
+        Nome é obrigatório.
+      </small>
+    </div>
 
-      <div>
-        <label for="email" class="block font-bold mb-3">E-mail</label>
-        <input type="text" pInputText id="email" formControlName="email" required autofocus fluid />
-        <small class="text-red-500" *ngIf="!this.userForm.value.email">Email é obrigatório.</small>
-      </div>
+    <div class="field mb-3">
+      <label for="email" class="block font-bold mb-2">E-mail</label>
+      <input type="text" class="w-full p-inputtext" pInputText id="email" formControlName="email" required autofocus
+        [ngClass]="{'ng-invalid ng-dirty': userForm.get('email')?.invalid && userForm.get('email')?.touched}" />
+      <small class="text-red-500 block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        E-mail é obrigatório.
+      </small>
+    </div>
 
-      <div>
-        <label for="password" class="block font-bold mb-3">Senha</label>
-        <input type="text" pInputText id="password" formControlName="password" required autofocus fluid />
-        <small class="text-red-500" *ngIf="!this.userForm.value.password">Senha é obrigatória.</small>
-      </div>
+    <div class="field mb-3" *ngIf="this.userAction.event.action === addUserAction">
+      <label for="password" class="block font-bold mb-2">Senha</label>
+      <input type="password" class="w-full p-inputtext" pInputText id="password" formControlName="password" required
+        autofocus />
+      <small class="text-red-500 block" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+        Senha é obrigatória.
+      </small>
+    </div>
 
-      <div>
-        <label for="role" class="block font-bold mb-3">Perfil</label>
-        <input type="text" pInputText id="role" formControlName="role" required autofocus fluid />
-        <small class="text-red-500" *ngIf="!this.userForm.value.role">Perfil é obrigatório.</small>
-      </div>
-    </form>
-  </div>
-</div>
+    <div class="field mb-3">
+      <label for="role" class="block font-bold mb-2">Perfil</label>
+      <input type="text" class="w-full p-inputtext" pInputText id="role" formControlName="role" required autofocus />
+      <small class="text-red-500 block" *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
+        Perfil é obrigatório.
+      </small>
+    </div>
 
-<div class="form-footer">
-  <p-button label="Salvar" icon="pi pi-check" />
-  <p-button label="Cancelar" icon="pi pi-times" text />
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Salvar" icon="pi pi-check" type="submit"></p-button>
+      <p-button label="Cancelar" icon="pi pi-times" text (onClick)="closeDialog()"></p-button>
+    </div>
+  </form>
 </div>

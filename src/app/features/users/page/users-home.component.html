@@ -1,1 +1,3 @@
-<app-users-table (userEvent)="handleUserAction($event)"></app-users-table>
+<app-users-summary-cards></app-users-summary-cards>
+
+<app-users-table [usersList]="usersList" (userEvent)="handleUserAction($event)"></app-users-table>

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UserEvent } from '../../../../models/enums/users/UserEvent';
 import { EventAction } from '../../../../models/interfaces/event/EventAction';
@@ -12,16 +12,21 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { Table, TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-users-table',
   standalone: true,
-  imports: [CardModule, TableModule, ToolbarModule, ButtonModule, DatePipe, InputTextModule, IconFieldModule, InputIconModule],
+  imports: [
+    CardModule, TableModule, ToolbarModule,
+    ButtonModule, DatePipe, InputTextModule,
+    IconFieldModule, InputIconModule, TooltipModule
+  ],
   templateUrl: './users-table.component.html',
   styleUrl: './users-table.component.scss'
 })
 export class UsersTableComponent {
-  usersList: Array<UserResponse> = [];
+  @Input() public usersList: Array<UserResponse> = [];
   @Output() userEvent = new EventEmitter<EventAction>();
   @Output() deleteUserEvent = new EventEmitter<{ id: number }>();
 
