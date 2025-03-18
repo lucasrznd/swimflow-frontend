@@ -40,10 +40,10 @@ export class SidemenuComponent implements OnInit {
     this.menuItemsData.set([
       { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/dashboard' },
       { label: 'Analytics', icon: 'pi pi-chart-line', routerLink: '/analytics', badge: '4', badgeClass: 'primary' },
-      { label: 'Usuários', icon: 'pi pi-users', routerLink: '/usuarios' },
       { label: 'Products', icon: 'pi pi-shopping-cart', routerLink: '/products', badge: 'New', badgeClass: 'success' },
       { label: 'Calendar', icon: 'pi pi-calendar', routerLink: '/calendar' },
       { label: 'Messages', icon: 'pi pi-envelope', routerLink: '/messages', badge: '12', badgeClass: 'danger' },
+      { label: 'Usuários', icon: 'pi pi-users', routerLink: '/usuarios' },
       { label: 'Settings', icon: 'pi pi-cog', routerLink: '/settings' }
     ]);
 

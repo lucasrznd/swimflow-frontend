@@ -11,6 +11,7 @@
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
   background-color: var(--surface-ground, #f8f9fa);
+  border-radius: 10px;
   width: calc(100% - var(--sidebar-collapsed-width));
   box-sizing: border-box;
 }
@@ -21,7 +22,7 @@
 }
 
 .content-container {
-  max-width: 1600px;
+  // max-width: 1600px;
   margin: 0 auto;
   width: 100%;
 }

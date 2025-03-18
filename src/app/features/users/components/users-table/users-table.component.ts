@@ -1,10 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 import { UserEvent } from '../../../../models/enums/users/UserEvent';
 import { EventAction } from '../../../../models/interfaces/event/EventAction';
 import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
 
-import { DatePipe } from '@angular/common';
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { IconFieldModule } from 'primeng/iconfield';

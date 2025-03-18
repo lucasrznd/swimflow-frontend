@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { UsersTableComponent } from "../components/users-table/users-table.component";
 
 @Component({
