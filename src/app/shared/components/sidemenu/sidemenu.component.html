@@ -1,0 +1,87 @@
+<div class="sidemenu-container">
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <p-button icon="pi pi-bars" (click)="toggleMobileSidebar()"
+      styleClass="p-button-rounded p-button-text mobile-menu-button" [ngClass]="{'mobile-only': true}">
+    </p-button>
+    <div class="mobile-title">{{ title }}</div>
+  </div>
+
+  <!-- Mobile Sidebar -->
+  <p-sidebar [(visible)]="mobileSidebarVisible" position="left" [modal]="true" styleClass="mobile-sidebar"
+    [dismissible]="true" [showCloseIcon]="true">
+    <div class="mobile-sidebar-content">
+      <div class="mobile-logo">
+        <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo">
+        <h2>{{ title }}</h2>
+      </div>
+
+      <div class="menu-container">
+        <ul class="menu-items">
+          <li *ngFor="let item of menuItems()" class="menu-item" [ngClass]="{'active': isActive(item.routerLink)}"
+            pRipple>
+            <a [routerLink]="item.routerLink" (click)="onMenuItemClick(item)">
+              <i [class]="item.icon"></i>
+              <span>{{ item.label }}</span>
+              <!-- <span *ngIf="item.badge" class="menu-badge" [ngClass]="item['badgeClass']">{{ item.badge }}</span> -->
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mobile-footer">
+        <div class="user-info" *ngIf="userInfo">
+          <img [src]="userInfo.avatar || 'assets/images/default-avatar.png'" alt="User Avatar">
+          <div class="user-details">
+            <span class="user-name">{{ userInfo.name }}</span>
+            <span class="user-role">{{ userInfo.role }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-sidebar>
+
+  <!-- Desktop Sidebar -->
+  <div class="desktop-sidebar" [ngClass]="{'expanded': desktopSidebarExpanded(), 'desktop-only': true}">
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <img *ngIf="logoUrl" [src]="logoUrl" alt="Logo" class="logo">
+        <h2 *ngIf="desktopSidebarExpanded()">{{ title }}</h2>
+      </div>
+      <p-button [icon]="desktopSidebarExpanded() ? 'pi pi-angle-left' : 'pi pi-angle-right'"
+        (click)="toggleDesktopSidebar()" styleClass="p-button-rounded p-button-text toggle-button">
+      </p-button>
+    </div>
+
+    <div class="menu-container">
+      <ul class="menu-items">
+        <li *ngFor="let item of menuItems()" class="menu-item" [ngClass]="{'active': isActive(item.routerLink)}" pRipple
+          [pTooltip]="!desktopSidebarExpanded() ? item.label : ''" tooltipPosition="right">
+          <a [routerLink]="item.routerLink">
+            <i [class]="item.icon"></i>
+            <span *ngIf="desktopSidebarExpanded()">{{ item.label }}</span>
+            <!-- <span *ngIf="item.badge && desktopSidebarExpanded()" class="menu-badge" [ngClass]="item['badgeClass']">{{
+              item.badge }}</span>
+            <span *ngIf="item.badge && !desktopSidebarExpanded()" class="menu-badge-collapsed"
+              [ngClass]="item['badgeClass']">{{ item.badge }}</span> -->
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer" *ngIf="desktopSidebarExpanded() && userInfo">
+      <div class="user-info">
+        <img [src]="userInfo.avatar || 'assets/images/default-avatar.png'" alt="User Avatar">
+        <div class="user-details">
+          <span class="user-name">{{ userInfo.name }}</span>
+          <span class="user-role">{{ userInfo.role }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer-collapsed" *ngIf="!desktopSidebarExpanded() && userInfo" [pTooltip]="userInfo.name"
+      tooltipPosition="right">
+      <img [src]="userInfo.avatar || 'assets/images/default-avatar.png'" alt="User Avatar">
+    </div>
+  </div>
+</div>
