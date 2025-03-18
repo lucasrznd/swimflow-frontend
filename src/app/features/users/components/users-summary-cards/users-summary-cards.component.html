@@ -1,0 +1,73 @@
+<div class="text-900 font-medium text-xl mb-3">Dashboard de Usuários</div>
+
+<div class="grid">
+  <div class="col-12 lg:col-6 xl:col-3">
+    <div class="card mb-0 h-full bg-white border-round p-2">
+      <div class="flex justify-content-between mb-3">
+        <div>
+          <span class="block text-500 font-medium mb-3">Usuários Ativos</span>
+          <div class="text-900 font-medium text-xl">{{usersStats.activeUsers}}</div>
+        </div>
+        <div class="flex align-items-center justify-content-center bg-blue-100 border-round"
+          style="width:2.5rem;height:2.5rem">
+          <i class="pi pi-users text-blue-500 text-xl"></i>
+        </div>
+      </div>
+      <span class="text-green-500 font-medium">{{usersStats.activeUsersPercentage}}% </span>
+      <span class="text-500">do total de usuários</span>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-6 xl:col-3">
+    <div class="card mb-0 h-full bg-white border-round p-2">
+      <div class="flex justify-content-between mb-3">
+        <div>
+          <span class="block text-500 font-medium mb-3">Novos Usuários</span>
+          <div class="text-900 font-medium text-xl">{{usersStats.newUsers}}</div>
+        </div>
+        <div class="flex align-items-center justify-content-center bg-orange-100 border-round"
+          style="width:2.5rem;height:2.5rem">
+          <i class="pi pi-user-plus text-orange-500 text-xl"></i>
+        </div>
+      </div>
+      <span class="text-green-500 font-medium">{{usersStats.newUsersGrowth}}% </span>
+      <span class="text-500">mais que no mês anterior</span>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-6 xl:col-3">
+    <div class="card mb-0 h-full bg-white border-round p-2">
+      <div class="flex justify-content-between mb-3">
+        <div>
+          <span class="block text-500 font-medium mb-3">Administradores</span>
+          <div class="text-900 font-medium text-xl">{{usersStats.adminUsers}}</div>
+        </div>
+        <div class="flex align-items-center justify-content-center bg-purple-100 border-round"
+          style="width:2.5rem;height:2.5rem">
+          <i class="pi pi-shield text-purple-500 text-xl"></i>
+        </div>
+      </div>
+      <span class="text-500 font-medium">{{usersStats.adminUsersPercentage}}% </span>
+      <span class="text-500">do total de usuários</span>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-6 xl:col-3">
+    <div class="card mb-0 h-full bg-white border-round p-2">
+      <div class="flex justify-content-between mb-3">
+        <div>
+          <span class="block text-500 font-medium mb-3">Taxa de Atividade</span>
+          <div class="text-900 font-medium text-xl">{{usersStats.activityRate}}%</div>
+        </div>
+        <div class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+          style="width:2.5rem;height:2.5rem">
+          <i class="pi pi-chart-line text-cyan-500 text-xl"></i>
+        </div>
+      </div>
+      <span
+        class="{{usersStats.activityTrend > 0 ? 'text-green-500' : 'text-red-500'}} font-medium">{{usersStats.activityTrend
+        > 0 ? '+' : ''}}{{usersStats.activityTrend}}% </span>
+      <span class="text-500">desde a semana passada</span>
+    </div>
+  </div>
+</div>
