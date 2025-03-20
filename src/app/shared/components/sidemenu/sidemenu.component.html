@@ -55,9 +55,9 @@
 
     <div class="menu-container">
       <ul class="menu-items">
-        <li *ngFor="let item of menuItems()" class="menu-item" [ngClass]="{'active': isActive(item.routerLink)}" pRipple
+        <li *ngFor="let item of menuItems()" class="menu-item" [ngClass]="{'active': isActive(item.routerLink)}"
           [pTooltip]="!desktopSidebarExpanded() ? item.label : ''" tooltipPosition="right">
-          <a [routerLink]="item.routerLink">
+          <a [routerLink]="item.routerLink" pRipple>
             <i [class]="item.icon"></i>
             <span *ngIf="desktopSidebarExpanded()">{{ item.label }}</span>
             <!-- <span *ngIf="item.badge && desktopSidebarExpanded()" class="menu-badge" [ngClass]="item['badgeClass']">{{
