@@ -110,7 +110,7 @@
         </td>
         <td>
           <div class="flex justify-content-center">
-            {{user.role}}
+            <p-tag [value]="user.role" [severity]="getRoleSeverity(user.role)"></p-tag>
           </div>
         </td>
         <td>
@@ -120,7 +120,7 @@
         </td>
         <td>
           <div class="flex justify-content-center">
-            {{user.active}}
+            <p-tag [value]="user.active ? 'Sim' : 'Não'" [severity]="getActivityStatus(user.active)"></p-tag>
           </div>
         </td>
         <td>
@@ -129,7 +129,7 @@
               pTooltip="Editar usuário" (click)="handleUserEvent(editUserEvent, user.id)"></button>
             <i class="pi pi-ellipsis-v"></i>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"
-              pTooltip="Remover usuário" (click)="handleDeleteUser(user.id)"></button>
+              pTooltip="Remover usuário" (click)="handleDeleteUser(user.id, user.email)"></button>
           </div>
         </td>
       </tr>

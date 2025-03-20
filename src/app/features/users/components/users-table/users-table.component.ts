@@ -11,6 +11,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { Table, TableModule } from "primeng/table";
+import { TagModule } from 'primeng/tag';
 import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from 'primeng/tooltip';
 
@@ -20,7 +21,8 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CardModule, TableModule, ToolbarModule,
     ButtonModule, DatePipe, InputTextModule,
-    IconFieldModule, InputIconModule, TooltipModule
+    IconFieldModule, InputIconModule, TooltipModule,
+    TagModule
   ],
   templateUrl: './users-table.component.html',
   styleUrl: './users-table.component.scss'
@@ -28,7 +30,7 @@ import { TooltipModule } from 'primeng/tooltip';
 export class UsersTableComponent {
   @Input() public usersList: Array<UserResponse> = [];
   @Output() userEvent = new EventEmitter<EventAction>();
-  @Output() deleteUserEvent = new EventEmitter<{ id: number }>();
+  @Output() deleteUserEvent = new EventEmitter<{ id: number, email: string }>();
 
   public userSelected!: UserResponse;
   public addUserEvent = UserEvent.ADD_USER_EVENT;
@@ -38,6 +40,18 @@ export class UsersTableComponent {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
+  getRoleSeverity(role: string): 'danger' | 'info' | 'secondary' {
+    if (role === 'Admin') return 'danger';
+    if (role === 'User') return 'info';
+    return 'secondary';
+  }
+
+  getActivityStatus(active: boolean): 'success' | 'danger' {
+    if (active) return 'success';
+
+    return 'danger';
+  }
+
   handleUserEvent(action: string, id?: number): void {
     if (action && action !== '') {
       const userEventData = id && id !== undefined ? { action, id } : { action };
@@ -45,9 +59,9 @@ export class UsersTableComponent {
     }
   }
 
-  handleDeleteUser(id: number): void {
-    if (id !== undefined) {
-      this.deleteUserEvent.emit({ id });
+  handleDeleteUser(id: number, email: string): void {
+    if (id !== undefined && email && email !== '') {
+      this.deleteUserEvent.emit({ id, email });
     }
   }
 }

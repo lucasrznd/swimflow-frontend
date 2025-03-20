@@ -1,20 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { UsersTableComponent } from "../components/users-table/users-table.component";
-
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
+
 import { EventAction } from '../../../models/interfaces/event/EventAction';
 import { UserResponse } from '../../../models/interfaces/users/UserResponse';
 import { UsersFormComponent } from '../components/users-form/users-form.component';
 import { UsersSummaryCardsComponent } from "../components/users-summary-cards/users-summary-cards.component";
+import { UsersTableComponent } from "../components/users-table/users-table.component";
+
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-users-home',
   standalone: true,
-  imports: [UsersTableComponent, UsersSummaryCardsComponent],
+  imports: [CommonModule, UsersTableComponent, UsersSummaryCardsComponent, ConfirmDialogModule],
   templateUrl: './users-home.component.html',
   styleUrl: './users-home.component.scss',
   providers: [MessageService, ConfirmationService, DialogService]
@@ -62,6 +64,22 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
             console.log('Fechou o modal');
           }
         })
+    }
+  }
+
+  handleDeleteUserAction(event: { id: number, email: string }): void {
+    if (event) {
+      this.confirmationService.confirm({
+        message: `Confirma a exclusão do usuário: ${event.email}?`,
+        header: 'Confirmação de exclusão',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Confirmar',
+        acceptButtonStyleClass: 'p-button-danger',
+        acceptIcon: 'pi pi-check',
+        rejectLabel: 'Cancelar',
+        rejectIcon: 'pi pi-times',
+        closable: true
+      });
     }
   }
 
