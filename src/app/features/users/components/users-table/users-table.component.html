@@ -10,7 +10,7 @@
   </p-toolbar>
 
   <p-table #usersDt [value]="usersList" [rows]="5" [paginator]="true" tableStyleClass="p-datatable-sm"
-    [globalFilterFields]="['nome', 'email', 'perfil']" [tableStyle]="{'min-width': '50rem'}" [rowHover]="true"
+    [globalFilterFields]="['fullName', 'email', 'role']" [tableStyle]="{'min-width': '50rem'}" [rowHover]="true"
     [(selection)]="userSelected" [showCurrentPageReport]="true" dataKey="id"
     currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} usuários">
     <ng-template pTemplate="caption">
@@ -26,14 +26,14 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="nome">
+        <th pSortableColumn="fullName">
           <div class="flex justify-content-center align-items-center">
             <div class="flex justify-content-center">
               Nome
             </div>
             <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="nome"></p-sortIcon>
-              <p-columnFilter type="text" field="nome" display="menu" matchMode="contains" [showMatchModes]="false"
+              <p-sortIcon field="fullName"></p-sortIcon>
+              <p-columnFilter type="text" field="fullName" display="menu" matchMode="contains" [showMatchModes]="false"
                 [showOperator]="false" [showAddButton]="false"></p-columnFilter>
             </div>
           </div>
@@ -58,14 +58,14 @@
           </div>
         </th>
 
-        <th pSortableColumn="perfil">
+        <th pSortableColumn="role">
           <div class="flex justify-content-center align-items-center">
             <div class="flex justify-content-center">
               Perfil
             </div>
             <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="perfil"></p-sortIcon>
-              <p-columnFilter type="text" field="perfil" display="menu" matchMode="contains" [showMatchModes]="false"
+              <p-sortIcon field="role"></p-sortIcon>
+              <p-columnFilter type="text" field="role" display="menu" matchMode="contains" [showMatchModes]="false"
                 [showOperator]="false" [showAddButton]="false"></p-columnFilter>
             </div>
           </div>

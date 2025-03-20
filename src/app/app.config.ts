@@ -13,6 +13,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
+      translation: {
+        apply: 'Aplicar',
+        clear: 'Limpar'
+      },
       ripple: true,
       theme: {
         preset: MyPreset,
