@@ -38,6 +38,7 @@ export class SidemenuComponent implements OnInit {
   ngOnInit() {
     // Set default menu items
     this.menuItemsData.set([
+      { label: 'Home', icon: 'pi pi-home', routerLink: '/home' },
       { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/dashboard' },
       { label: 'Analytics', icon: 'pi pi-chart-line', routerLink: '/analytics', badge: '4', badgeClass: 'primary' },
       { label: 'Products', icon: 'pi pi-shopping-cart', routerLink: '/products', badge: 'New', badgeClass: 'success' },
