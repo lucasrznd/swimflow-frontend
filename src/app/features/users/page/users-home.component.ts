@@ -37,6 +37,8 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
   handleUserAction(event: EventAction): void {
     if (event) {
       this.ref = this.dialogService.open(UsersFormComponent, {
+        transitionOptions: '160ms',
+        focusOnShow: false,
         header: event?.action,
         style: {
           width: '90vw',
