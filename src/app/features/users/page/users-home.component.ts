@@ -12,6 +12,8 @@ import { UsersTableComponent } from "../components/users-table/users-table.compo
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserEvent } from '../../../models/enums/users/UserEvent';
+import { UsersDeactivatedFormComponent } from '../components/users-deactivated-form/users-deactivated-form.component';
 
 @Component({
   selector: 'app-users-home',
@@ -38,24 +40,28 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
 
   handleUserAction(event: EventAction): void {
     if (event) {
-      this.ref = this.dialogService.open(UsersFormComponent, {
-        transitionOptions: '160ms',
-        focusOnShow: false,
-        header: event?.action,
-        style: {
-          width: '90vw',
-          maxWidth: '500px'
-        },
-        modal: true,
-        contentStyle: { overflow: 'auto' },
-        closable: true,
-        baseZIndex: 1000,
-        maximizable: false,
-        data: {
-          event: event,
-          usersList: this.usersList
-        }
-      });
+      if (event.action !== UserEvent.REACTIVATE_USER_EVENT) {
+        this.ref = this.dialogService.open(UsersFormComponent, {
+          transitionOptions: '160ms',
+          focusOnShow: false,
+          header: event?.action,
+          style: {
+            width: '90vw',
+            maxWidth: '500px'
+          },
+          modal: true,
+          contentStyle: { overflow: 'auto' },
+          closable: true,
+          baseZIndex: 1000,
+          maximizable: false,
+          data: {
+            event: event,
+            usersList: this.usersList
+          }
+        });
+      } else {
+        this.handleReactivateUserAction(event);
+      }
 
       this.ref.onClose
         .pipe(takeUntil(this.destroy$))
@@ -63,7 +69,30 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
           next: () => {
             console.log('Fechou o modal');
           }
-        })
+        });
+    }
+  }
+
+  handleReactivateUserAction(event: EventAction): void {
+    if (event) {
+      this.ref = this.dialogService.open(UsersDeactivatedFormComponent, {
+        transitionOptions: '160ms',
+        focusOnShow: false,
+        header: event?.action,
+        style: {
+          width: '90vw',
+          maxWidth: '65vw'
+        },
+        modal: true,
+        contentStyle: { overflow: 'visible' },
+        closable: true,
+        baseZIndex: 1000,
+        maximizable: false,
+        data: {
+          event: event,
+          usersDeactivatedList: this.usersList
+        }
+      });
     }
   }
 

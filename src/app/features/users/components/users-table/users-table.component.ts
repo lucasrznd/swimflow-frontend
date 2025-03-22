@@ -35,6 +35,7 @@ export class UsersTableComponent {
   public userSelected!: UserResponse;
   public addUserEvent = UserEvent.ADD_USER_EVENT;
   public editUserEvent = UserEvent.EDIT_USER_EVENT;
+  public reactivateUserAction = UserEvent.REACTIVATE_USER_EVENT;
 
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
