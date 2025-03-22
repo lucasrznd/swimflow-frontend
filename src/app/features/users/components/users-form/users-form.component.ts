@@ -10,13 +10,16 @@ import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
+import { DropdownOption } from '../../../../models/interfaces/dropdown/DropdownOption';
 import { UserRequest } from '../../../../models/interfaces/users/UserRequest';
 import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
+import { DropdownService } from '../../../../shared/services/dropdown/dropdown.service';
 
 @Component({
   selector: 'app-users-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule, SelectModule],
   templateUrl: './users-form.component.html',
   styleUrl: './users-form.component.scss'
 })
@@ -25,16 +28,18 @@ export class UsersFormComponent implements OnInit {
   private messageService = inject(MessageService);
   private ref = inject(DynamicDialogConfig);
   private dialogRef = inject(DynamicDialogRef);
+  private dropdownService = inject(DropdownService);
   private readonly destroy$: Subject<void> = new Subject();
 
   public usersList: Array<UserResponse> = [];
+  public userRolesOptions: Array<DropdownOption> = [];
   public userAction!: {
     event: EventAction,
     usersList: Array<UserResponse>
   }
 
   public userForm = this.fb.group({
-    fullName: ['', Validators.required],
+    fullName: ['', [Validators.required, Validators.minLength(10)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     role: ['', Validators.required]
@@ -45,6 +50,7 @@ export class UsersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userAction = this.ref.data;
+    this.userRolesOptions = this.dropdownService.getUserRolesOptions();
 
     if (this.userAction.event.action === this.editUserAction && this.userAction.event.id !== null || undefined) {
       this.setUserData(this.userAction.event.id!);

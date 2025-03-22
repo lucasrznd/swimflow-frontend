@@ -3,7 +3,7 @@
     <div class="field mb-3">
       <label for="fullName" class="block font-bold mb-2">Nome Completo</label>
       <input type="text" class="w-full p-inputtext" pInputText id="fullName" formControlName="fullName" required
-        autofocus />
+        [ngClass]="{'ng-invalid ng-dirty': userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched}" />
       <small class="text-red-500 block" *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched">
         Nome é obrigatório.
       </small>
@@ -11,7 +11,7 @@
 
     <div class="field mb-3">
       <label for="email" class="block font-bold mb-2">E-mail</label>
-      <input type="text" class="w-full p-inputtext" pInputText id="email" formControlName="email" required autofocus
+      <input type="text" class="w-full p-inputtext" pInputText id="email" formControlName="email" required
         [ngClass]="{'ng-invalid ng-dirty': userForm.get('email')?.invalid && userForm.get('email')?.touched}" />
       <small class="text-red-500 block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
         E-mail é obrigatório.
@@ -21,7 +21,7 @@
     <div class="field mb-3" *ngIf="this.userAction.event.action === addUserAction">
       <label for="password" class="block font-bold mb-2">Senha</label>
       <input type="password" class="w-full p-inputtext" pInputText id="password" formControlName="password" required
-        autofocus />
+        [ngClass]="{'ng-invalid ng-dirty': userForm.get('password')?.invalid && userForm.get('password')?.touched}" />
       <small class="text-red-500 block" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
         Senha é obrigatória.
       </small>
@@ -29,14 +29,18 @@
 
     <div class="field mb-3">
       <label for="role" class="block font-bold mb-2">Perfil</label>
-      <input type="text" class="w-full p-inputtext" pInputText id="role" formControlName="role" required autofocus />
+      <p-select id="role" [options]="userRolesOptions" formControlName="role" placeholder="Selecione um perfil"
+        optionLabel="label" optionValue="value"
+        [ngClass]="{'ng-invalid ng-dirty': userForm.get('role')?.invalid && userForm.get('role')?.touched}"
+        styleClass="w-full">
+      </p-select>
       <small class="text-red-500 block" *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
         Perfil é obrigatório.
       </small>
     </div>
 
     <div class="flex justify-content-end gap-2 mt-4">
-      <p-button label="Salvar" icon="pi pi-check" type="submit"></p-button>
+      <p-button label="Salvar" icon="pi pi-check" type="submit" [disabled]="!userForm.valid"></p-button>
       <p-button label="Cancelar" icon="pi pi-times" text (onClick)="closeDialog()"></p-button>
     </div>
   </form>

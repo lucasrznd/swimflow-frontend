@@ -91,7 +91,7 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         email: "alice.martins@example.com",
         createdAt: new Date("2024-01-15T10:30:00"),
         lastLogin: new Date("2025-03-15T09:45:00"),
-        role: "Admin",
+        role: "ADMIN",
         active: true,
       },
       {
@@ -100,7 +100,7 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         email: "bruno.costa@example.com",
         createdAt: new Date("2023-11-22T14:10:00"),
         lastLogin: new Date("2025-03-16T12:20:00"),
-        role: "User",
+        role: "USER",
         active: true,
       },
       {
@@ -109,7 +109,7 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         email: "carla.ferreira@example.com",
         createdAt: new Date("2024-06-05T08:00:00"),
         lastLogin: new Date("2025-03-10T16:35:00"),
-        role: "Manager",
+        role: "MANAGER",
         active: false,
       },
       {
@@ -118,7 +118,7 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         email: "daniel.souza@example.com",
         createdAt: new Date("2024-03-18T11:45:00"),
         lastLogin: new Date("2025-03-12T14:50:00"),
-        role: "User",
+        role: "USER",
         active: true,
       },
       {
@@ -127,7 +127,7 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         email: "eduarda.lima@example.com",
         createdAt: new Date("2024-08-09T09:25:00"),
         lastLogin: new Date("2025-03-14T10:10:00"),
-        role: "Admin",
+        role: "ADMIN",
         active: false,
       },
     ];

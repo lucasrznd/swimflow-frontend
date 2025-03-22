@@ -41,8 +41,8 @@ export class UsersTableComponent {
   }
 
   getRoleSeverity(role: string): 'danger' | 'info' | 'secondary' {
-    if (role === 'Admin') return 'danger';
-    if (role === 'User') return 'info';
+    if (role === 'ADMIN') return 'danger';
+    if (role === 'USER') return 'info';
     return 'secondary';
   }
 
