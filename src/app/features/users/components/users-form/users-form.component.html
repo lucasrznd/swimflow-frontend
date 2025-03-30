@@ -11,7 +11,8 @@
 
     <div class="field mb-3">
       <label for="email" class="block font-bold mb-2">E-mail</label>
-      <input type="text" class="w-full p-inputtext" pInputText id="email" formControlName="email" required
+      <input id="email" autocomplete="email" type="text" class="w-full p-inputtext" pInputText formControlName="email"
+        required
         [ngClass]="{'ng-invalid ng-dirty': userForm.get('email')?.invalid && userForm.get('email')?.touched}" />
       <small class="text-red-500 block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
         E-mail é obrigatório.
@@ -30,7 +31,7 @@
     <div class="field mb-3">
       <label for="role" class="block font-bold mb-2">Perfil</label>
       <p-select id="role" [options]="userRolesOptions" formControlName="role" placeholder="Selecione um perfil"
-        optionLabel="label" optionValue="value"
+        optionLabel="label" optionValue="value" inputId="role" dataKey="value" ariaLabelledBy="value"
         [ngClass]="{'ng-invalid ng-dirty': userForm.get('role')?.invalid && userForm.get('role')?.touched}"
         styleClass="w-full">
       </p-select>

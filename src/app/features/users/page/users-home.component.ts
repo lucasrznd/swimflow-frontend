@@ -3,8 +3,10 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
+import { UserEvent } from '../../../models/enums/users/UserEvent';
 import { EventAction } from '../../../models/interfaces/event/EventAction';
 import { UserResponse } from '../../../models/interfaces/users/UserResponse';
+import { UsersDeactivatedFormComponent } from '../components/users-deactivated-form/users-deactivated-form.component';
 import { UsersFormComponent } from '../components/users-form/users-form.component';
 import { UsersSummaryCardsComponent } from "../components/users-summary-cards/users-summary-cards.component";
 import { UsersTableComponent } from "../components/users-table/users-table.component";
@@ -12,8 +14,6 @@ import { UsersTableComponent } from "../components/users-table/users-table.compo
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UserEvent } from '../../../models/enums/users/UserEvent';
-import { UsersDeactivatedFormComponent } from '../components/users-deactivated-form/users-deactivated-form.component';
 
 @Component({
   selector: 'app-users-home',
@@ -102,11 +102,17 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         message: `Confirma a exclusão do usuário: ${event.email}?`,
         header: 'Confirmação de exclusão',
         icon: 'pi pi-exclamation-triangle',
-        acceptLabel: 'Confirmar',
-        acceptButtonStyleClass: 'p-button-danger',
-        acceptIcon: 'pi pi-check',
-        rejectLabel: 'Cancelar',
-        rejectIcon: 'pi pi-times',
+        acceptButtonProps: {
+          label: 'Confirmar',
+          severity: 'danger',
+          icon: 'pi pi-check'
+        },
+        rejectButtonProps: {
+          label: 'Cancelar',
+          text: true,
+          icon: 'pi pi-times'
+        },
+        closeOnEscape: true,
         closable: true
       });
     }

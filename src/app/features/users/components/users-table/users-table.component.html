@@ -18,7 +18,7 @@
         <h4 class="m-0">Usuários</h4>
         <p-iconfield class="ml-2">
           <p-inputicon styleClass="pi pi-search" />
-          <input pInputText type="text" class="w-full" (input)="onGlobalFilter(usersDt, $event)"
+          <input id="inputSearch" pInputText type="text" class="w-full" (input)="onGlobalFilter(usersDt, $event)"
             placeholder="Buscar..." />
         </p-iconfield>
       </div>
