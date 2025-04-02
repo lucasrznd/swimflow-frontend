@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
 import { UserStats } from '../../../../models/interfaces/users/UserStats';
 
 @Component({
-  selector: 'app-users-summary-cards',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './users-summary-cards.component.html',
-  styleUrl: './users-summary-cards.component.scss'
+    selector: 'app-users-summary-cards',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './users-summary-cards.component.html',
+    styleUrl: './users-summary-cards.component.scss'
 })
 export class UsersSummaryCardsComponent {
 

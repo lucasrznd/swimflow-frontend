@@ -17,11 +17,11 @@ interface SidemenuItem extends MenuItem {
 }
 
 @Component({
-  selector: 'app-sidemenu',
-  standalone: true,
-  imports: [CommonModule, RouterModule, SidebarModule, ButtonModule, MenuModule, TooltipModule, RippleModule, BadgeModule],
-  templateUrl: './sidemenu.component.html',
-  styleUrl: './sidemenu.component.scss'
+    selector: 'app-sidemenu',
+    standalone: true,
+    imports: [CommonModule, RouterModule, SidebarModule, ButtonModule, MenuModule, TooltipModule, RippleModule, BadgeModule],
+    templateUrl: './sidemenu.component.html',
+    styleUrl: './sidemenu.component.scss'
 })
 export class SidemenuComponent implements OnInit {
   @Input() title: string = 'Navigation';

@@ -13,11 +13,11 @@ import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
-  selector: 'app-users-deactivated-form',
-  standalone: true,
-  imports: [CommonModule, TableModule, IconFieldModule, TagModule, ButtonModule, TooltipModule],
-  templateUrl: './users-deactivated-form.component.html',
-  styleUrl: './users-deactivated-form.component.scss'
+    selector: 'app-users-deactivated-form',
+    standalone: true,
+    imports: [CommonModule, TableModule, IconFieldModule, TagModule, ButtonModule, TooltipModule],
+    templateUrl: './users-deactivated-form.component.html',
+    styleUrl: './users-deactivated-form.component.scss'
 })
 export class UsersDeactivatedFormComponent implements OnInit {
   private ref = inject(DynamicDialogConfig);

@@ -17,11 +17,11 @@ import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
 import { DropdownService } from '../../../../shared/services/dropdown/dropdown.service';
 
 @Component({
-  selector: 'app-users-form',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule, SelectModule],
-  templateUrl: './users-form.component.html',
-  styleUrl: './users-form.component.scss'
+    selector: 'app-users-form',
+    standalone: true,
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule, SelectModule],
+    templateUrl: './users-form.component.html',
+    styleUrl: './users-form.component.scss'
 })
 export class UsersFormComponent implements OnInit {
   private fb = inject(FormBuilder);

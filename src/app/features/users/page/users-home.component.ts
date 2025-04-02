@@ -16,12 +16,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
-  selector: 'app-users-home',
-  standalone: true,
-  imports: [CommonModule, UsersTableComponent, UsersSummaryCardsComponent, ConfirmDialogModule],
-  templateUrl: './users-home.component.html',
-  styleUrl: './users-home.component.scss',
-  providers: [MessageService, ConfirmationService, DialogService]
+    selector: 'app-users-home',
+    standalone: true,
+    imports: [CommonModule, UsersTableComponent, UsersSummaryCardsComponent, ConfirmDialogModule],
+    templateUrl: './users-home.component.html',
+    styleUrl: './users-home.component.scss',
+    providers: [MessageService, ConfirmationService, DialogService]
 })
 export class UsersHomeComponent implements OnInit, OnDestroy {
   private router = inject(Router);

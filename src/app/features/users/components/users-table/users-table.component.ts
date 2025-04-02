@@ -16,16 +16,16 @@ import { ToolbarModule } from "primeng/toolbar";
 import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
-  selector: 'app-users-table',
-  standalone: true,
-  imports: [
-    CardModule, TableModule, ToolbarModule,
-    ButtonModule, DatePipe, InputTextModule,
-    IconFieldModule, InputIconModule, TooltipModule,
-    TagModule
-  ],
-  templateUrl: './users-table.component.html',
-  styleUrl: './users-table.component.scss'
+    selector: 'app-users-table',
+    standalone: true,
+    imports: [
+        CardModule, TableModule, ToolbarModule,
+        ButtonModule, DatePipe, InputTextModule,
+        IconFieldModule, InputIconModule, TooltipModule,
+        TagModule
+    ],
+    templateUrl: './users-table.component.html',
+    styleUrl: './users-table.component.scss'
 })
 export class UsersTableComponent {
   @Input() public usersList: Array<UserResponse> = [];
