@@ -76,11 +76,13 @@
           <span class="user-name">{{ userInfo.name }}</span>
           <span class="user-role">{{ userInfo.role }}</span>
         </div>
+        <div class="logout-container">
+          <p-button label="Sair" icon="pi pi-sign-out" variant="text" severity="danger"></p-button>
+        </div>
       </div>
     </div>
 
-    <div class="sidebar-footer-collapsed" *ngIf="!desktopSidebarExpanded() && userInfo" [pTooltip]="userInfo.name"
-      tooltipPosition="right">
+    <div class="sidebar-footer-collapsed" *ngIf="!desktopSidebarExpanded() && userInfo" [pTooltip]="userInfo.name">
       <img [src]="userInfo.avatar || 'assets/images/default-avatar.png'" alt="User Avatar">
     </div>
   </div>

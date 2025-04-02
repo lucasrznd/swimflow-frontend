@@ -48,6 +48,12 @@ export class SidemenuComponent implements OnInit {
       { label: 'Settings', icon: 'pi pi-cog', routerLink: '/settings' }
     ]);
 
+    this.userInfo = {
+      name: 'John Doe',
+      role: 'Administrator',
+      avatar: 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'
+    };
+
     // Track route changes for active menu item
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
