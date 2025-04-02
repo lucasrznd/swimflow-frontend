@@ -126,10 +126,11 @@
         <td>
           <div class="flex justify-content-center align-content-center align-items-center">
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-text"
-              pTooltip="Editar usuário" (click)="handleUserEvent(editUserEvent, user.id)"></button>
+              pTooltip="Editar usuário" tooltipPosition="top"
+              (click)="handleUserEvent(editUserEvent, user.id)"></button>
             <i class="pi pi-ellipsis-v"></i>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"
-              pTooltip="Remover usuário" (click)="handleDeleteUser(user.id, user.email)"></button>
+              pTooltip="Remover usuário" tooltipPosition="top" (click)="handleDeleteUser(user.id, user.email)"></button>
           </div>
         </td>
       </tr>
