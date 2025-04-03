@@ -2,7 +2,7 @@
   <p-table #usersDt [value]="usersDeactivatedList" [rows]="5" [paginator]="true" tableStyleClass="p-datatable-sm"
     [globalFilterFields]="['fullName', 'email', 'role']" [tableStyle]="{'min-width': '50rem'}" [scrollable]="true"
     scrollHeight="flex" [rowHover]="true" [(selection)]="userSelected" [showCurrentPageReport]="true" dataKey="id"
-    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} usuários">
+    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} usuários" size="small">
 
     <ng-template pTemplate="header">
       <tr>
@@ -113,7 +113,7 @@
     </ng-template>
   </p-table>
 
-  <div class="flex justify-content-end gap-2 mt-4">
+  <div class="flex justify-content-end">
     <p-button label="Cancelar" icon="pi pi-times" text (onClick)="closeDialog()"></p-button>
   </div>
 </div>
