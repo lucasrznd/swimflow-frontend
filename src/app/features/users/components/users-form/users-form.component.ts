@@ -9,6 +9,8 @@ import { EventAction } from '../../../../models/interfaces/event/EventAction';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { DropdownOption } from '../../../../models/interfaces/dropdown/DropdownOption';
@@ -17,11 +19,11 @@ import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
 import { DropdownService } from '../../../../shared/services/dropdown/dropdown.service';
 
 @Component({
-    selector: 'app-users-form',
-    standalone: true,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule, SelectModule],
-    templateUrl: './users-form.component.html',
-    styleUrl: './users-form.component.scss'
+  selector: 'app-users-form',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule, SelectModule, InputIcon, IconField],
+  templateUrl: './users-form.component.html',
+  styleUrl: './users-form.component.scss'
 })
 export class UsersFormComponent implements OnInit {
   private fb = inject(FormBuilder);

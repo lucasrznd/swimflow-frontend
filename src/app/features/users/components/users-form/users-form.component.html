@@ -2,8 +2,11 @@
   <form [formGroup]="userForm" (ngSubmit)="handleSubmitUserAction()" class="w-full">
     <div class="field mb-3">
       <label for="fullName" class="block font-bold mb-2">Nome Completo</label>
-      <input type="text" class="w-full p-inputtext" pInputText id="fullName" formControlName="fullName" required
-        [ngClass]="{'ng-invalid ng-dirty': userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched}" />
+      <p-iconfield>
+        <p-inputicon styleClass="pi pi-user" />
+        <input type="text" class="w-full p-inputtext" pInputText id="fullName" formControlName="fullName" required
+          [ngClass]="{'ng-invalid ng-dirty': userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched}" />
+      </p-iconfield>
       <small class="text-red-500 block" *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched">
         Nome é obrigatório.
       </small>
@@ -11,9 +14,12 @@
 
     <div class="field mb-3">
       <label for="email" class="block font-bold mb-2">E-mail</label>
-      <input id="email" autocomplete="email" type="text" class="w-full p-inputtext" pInputText formControlName="email"
-        required
-        [ngClass]="{'ng-invalid ng-dirty': userForm.get('email')?.invalid && userForm.get('email')?.touched}" />
+      <p-iconfield>
+        <p-inputIcon styleClass="pi pi-envelope" />
+        <input id="email" autocomplete="email" type="text" class="w-full p-inputtext" pInputText formControlName="email"
+          required
+          [ngClass]="{'ng-invalid ng-dirty': userForm.get('email')?.invalid && userForm.get('email')?.touched}" />
+      </p-iconfield>
       <small class="text-red-500 block" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
         E-mail é obrigatório.
       </small>
@@ -21,8 +27,11 @@
 
     <div class="field mb-3" *ngIf="this.userAction.event.action === addUserAction">
       <label for="password" class="block font-bold mb-2">Senha</label>
-      <input type="password" class="w-full p-inputtext" pInputText id="password" formControlName="password" required
-        [ngClass]="{'ng-invalid ng-dirty': userForm.get('password')?.invalid && userForm.get('password')?.touched}" />
+      <p-iconfield>
+        <p-inputIcon class="pi pi-lock" />
+        <input type="password" class="w-full p-inputtext" pInputText id="password" formControlName="password" required
+          [ngClass]="{'ng-invalid ng-dirty': userForm.get('password')?.invalid && userForm.get('password')?.touched}" />
+      </p-iconfield>
       <small class="text-red-500 block" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
         Senha é obrigatória.
       </small>
