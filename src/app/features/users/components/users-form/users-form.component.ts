@@ -4,7 +4,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { Subject } from 'rxjs';
 
 import { UserEvent } from '../../../../models/enums/users/UserEvent';
+import { DropdownOption } from '../../../../models/interfaces/dropdown/DropdownOption';
 import { EventAction } from '../../../../models/interfaces/event/EventAction';
+import { UserRequest } from '../../../../models/interfaces/users/UserRequest';
+import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
+import { DropdownService } from '../../../../shared/services/dropdown/dropdown.service';
 
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -13,10 +17,6 @@ import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
-import { DropdownOption } from '../../../../models/interfaces/dropdown/DropdownOption';
-import { UserRequest } from '../../../../models/interfaces/users/UserRequest';
-import { UserResponse } from '../../../../models/interfaces/users/UserResponse';
-import { DropdownService } from '../../../../shared/services/dropdown/dropdown.service';
 
 @Component({
   selector: 'app-users-form',
