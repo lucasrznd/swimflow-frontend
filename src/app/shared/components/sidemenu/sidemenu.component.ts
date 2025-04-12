@@ -17,11 +17,11 @@ interface SidemenuItem extends MenuItem {
 }
 
 @Component({
-    selector: 'app-sidemenu',
-    standalone: true,
-    imports: [CommonModule, RouterModule, SidebarModule, ButtonModule, MenuModule, TooltipModule, RippleModule, BadgeModule],
-    templateUrl: './sidemenu.component.html',
-    styleUrl: './sidemenu.component.scss'
+  selector: 'app-sidemenu',
+  standalone: true,
+  imports: [CommonModule, RouterModule, SidebarModule, ButtonModule, MenuModule, TooltipModule, RippleModule, BadgeModule],
+  templateUrl: './sidemenu.component.html',
+  styleUrl: './sidemenu.component.scss'
 })
 export class SidemenuComponent implements OnInit {
   @Input() title: string = 'Navigation';
@@ -31,7 +31,7 @@ export class SidemenuComponent implements OnInit {
   private router = inject(Router);
   private menuItemsData = signal<SidemenuItem[]>([]); // Using extended interface
   mobileSidebarVisible = signal<boolean>(false);
-  desktopSidebarExpanded = signal<boolean>(true);
+  desktopSidebarExpanded = localStorage.getItem('desktopSidebarExpanded') === 'true' ? signal<boolean>(true) : signal<boolean>(false);
   menuItems = this.menuItemsData;
   currentRoute = signal<string>('');
 
@@ -78,6 +78,7 @@ export class SidemenuComponent implements OnInit {
   checkScreenSize() {
     if (window.innerWidth < 1200) {
       this.desktopSidebarExpanded.set(false);
+      localStorage.setItem('desktopSidebarExpanded', 'false');
     }
   }
 
@@ -85,8 +86,19 @@ export class SidemenuComponent implements OnInit {
     this.mobileSidebarVisible.update(val => !val);
   }
 
-  toggleDesktopSidebar() {
-    this.desktopSidebarExpanded.update(val => !val);
+  toggleDesktopSidebar(): void {
+    const isExpanded = localStorage.getItem('desktopSidebarExpanded') === 'true';
+
+    if (!isExpanded) {
+      // Expand the sidebar
+      this.desktopSidebarExpanded.update(() => true);
+      localStorage.setItem('desktopSidebarExpanded', 'true');
+      return;
+    }
+
+    // Collapse the sidebar
+    this.desktopSidebarExpanded.update(() => false);
+    localStorage.setItem('desktopSidebarExpanded', 'false');
   }
 
   onMenuItemClick(item?: MenuItem) {
