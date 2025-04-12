@@ -14,18 +14,20 @@ import { UsersTableComponent } from "../components/users-table/users-table.compo
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserService } from '../../../shared/services/users/user.service';
 
 @Component({
-    selector: 'app-users-home',
-    standalone: true,
-    imports: [CommonModule, UsersTableComponent, UsersSummaryCardsComponent, ConfirmDialogModule],
-    templateUrl: './users-home.component.html',
-    styleUrl: './users-home.component.scss',
-    providers: [MessageService, ConfirmationService, DialogService]
+  selector: 'app-users-home',
+  standalone: true,
+  imports: [CommonModule, UsersTableComponent, UsersSummaryCardsComponent, ConfirmDialogModule],
+  templateUrl: './users-home.component.html',
+  styleUrl: './users-home.component.scss',
+  providers: [MessageService, ConfirmationService, DialogService]
 })
 export class UsersHomeComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private messageService = inject(MessageService);
+  private userService = inject(UserService);
   private confirmationService = inject(ConfirmationService);
   private dialogService = inject(DialogService);
 
@@ -35,7 +37,18 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
   public usersList: Array<UserResponse> = [];
 
   ngOnInit(): void {
-    this.setUsers();
+    this.findAllUsers();
+  }
+
+  findAllUsers(): void {
+    this.userService.findAll().subscribe({
+      next: (response) => {
+        this.usersList = response;
+      },
+      error: (error) => {
+        this.messageService.add({ severity: 'error', summary: 'Erro', detail: error.message, life: 5000 });
+      }
+    });
   }
 
   handleUserAction(event: EventAction): void {
@@ -116,56 +129,6 @@ export class UsersHomeComponent implements OnInit, OnDestroy {
         closable: true
       });
     }
-  }
-
-  setUsers(): void {
-    this.usersList = [
-      {
-        id: 1,
-        fullName: "Alice Martins",
-        email: "alice.martins@example.com",
-        createdAt: new Date("2024-01-15T10:30:00"),
-        lastLogin: new Date("2025-03-15T09:45:00"),
-        role: "ADMIN",
-        active: true,
-      },
-      {
-        id: 2,
-        fullName: "Bruno Costa",
-        email: "bruno.costa@example.com",
-        createdAt: new Date("2023-11-22T14:10:00"),
-        lastLogin: new Date("2025-03-16T12:20:00"),
-        role: "USER",
-        active: true,
-      },
-      {
-        id: 3,
-        fullName: "Carla Ferreira",
-        email: "carla.ferreira@example.com",
-        createdAt: new Date("2024-06-05T08:00:00"),
-        lastLogin: new Date("2025-03-10T16:35:00"),
-        role: "MANAGER",
-        active: false,
-      },
-      {
-        id: 4,
-        fullName: "Daniel Souza",
-        email: "daniel.souza@example.com",
-        createdAt: new Date("2024-03-18T11:45:00"),
-        lastLogin: new Date("2025-03-12T14:50:00"),
-        role: "USER",
-        active: true,
-      },
-      {
-        id: 5,
-        fullName: "Eduarda Lima",
-        email: "eduarda.lima@example.com",
-        createdAt: new Date("2024-08-09T09:25:00"),
-        lastLogin: new Date("2025-03-14T10:10:00"),
-        role: "ADMIN",
-        active: false,
-      },
-    ];
   }
 
   ngOnDestroy(): void {
